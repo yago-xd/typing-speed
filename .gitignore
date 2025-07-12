@@ -1,5 +1,7 @@
 ### IntelliJ IDEA ###
+.idea/
 out/
+/typing-speed.iml
 !**/src/main/**/out/
 !**/src/test/**/out/
 
