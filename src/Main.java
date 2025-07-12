@@ -31,31 +31,35 @@ public class Main {
         return Math.round(tm*10)/10f;
     }
     public static void welcome(){
-        System.out.println("Welcome to the Typing Speed Checker!");
-        System.out.println("You will be shown a sentence");
-        System.out.println("Type it as fast and as accurately as you can (including punctuation)");
-        System.out.println("Good luck!");
+        System.out.println("╔══════════════════════════════════════════════════╗");
+        System.out.println("║       👋 Welcome to the Typing Speed Test!       ║");
+        System.out.println("╠══════════════════════════════════════════════════╣");
+        System.out.println("║ ✨ You’ll be shown a sentence to type.           ║");
+        System.out.println("║ ⌨️ Try to type it as quickly and accurately      ║");
+        System.out.println("║     as possible — punctuation included!          ║");
+        System.out.println("║ 🎯 Let’s see how fast those fingers can fly!     ║");
+        System.out.println("╚══════════════════════════════════════════════════╝\n");
     }
     public static void start() throws InterruptedException {
-        System.out.print("\nPress Enter when ready: ");
+        System.out.print("👉 Press Enter when you're ready to begin: ");
         while(true){
             if(sc.hasNextLine())
                 break;
         }
         sc.nextLine();
         System.out.println();
-        for(int i=3;i>=1;i--){
-            System.out.print("\rTyping Test is starting in "+i);
+        System.out.print("⏳ Get ready! The typing test begins in ");
+        for (int i = 3; i >= 1; i--) {
+            System.out.print("\r⏳ Get ready! The typing test begins in ⏱️ " + i);
             Thread.sleep(1000);
         }
-        System.out.print("\rTyping Test has started");
-        System.out.println("\nType this: ");
+        System.out.print("\r✅ Go! Start typing the following sentence: \n");
         get_sentence();
-        System.out.println("\""+sentence+"\"");
+        System.out.println("📄 \"" + sentence + "\"");
         start_dur=System.currentTimeMillis();
         user_input = sc.nextLine();
         end_dur=System.currentTimeMillis();
-        System.out.println("You typed: \""+user_input+"\"");
+        System.out.println("📝 You typed: \"" + user_input + "\"");
     }
     public static void calculate(){
         int char_count =0;
@@ -90,13 +94,21 @@ public class Main {
         accuracy_input=((int)(accuracy_input *10))/10f;
     }
     public static void display(){
-        System.out.println("\n------------Results------------");
-        System.out.println("Time Taken: "+(time*60.0f)+"s");
-        System.out.println("Words Typed: "+ word_count);
-        System.out.println("Raw WPM: "+ raw_wpm);
-        System.out.println("Actual WPM: "+final_wpm);
-        System.out.println("Full Sentence Accuracy: "+ accuracy_total +"%");
-        System.out.println("Typed Sentence Accuracy: "+ accuracy_input +"%");
+        System.out.println("\n━━━━━━━━━━━━━━━━━━━━━━ 📊 RESULTS 📊 ━━━━━━━━━━━━━━━━━━━━━━");
+        System.out.println("⏱️ Time Taken: "+time*60.0f+"s");
+        System.out.println("✍️ Words Typed: " + word_count);
+        System.out.println("🚀 Raw Speed (WPM): " + raw_wpm);
+        System.out.println("🎯 Accurate Speed (WPM): " + final_wpm);
+        System.out.println("📌 Sentence Match Accuracy: " + accuracy_total + "%");
+        System.out.println("📌 Typed Input Accuracy:    " + accuracy_input + "%");
+        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        if(final_wpm>=60)
+            System.out.println("🔥 Incredible speed! You're a typing wizard!");
+        else if(final_wpm>=40)
+            System.out.println("💪 Great job! Keep practicing and you'll be even faster.");
+        else
+            System.out.println("👍 Good start! Keep practicing to improve your accuracy and speed.");
+        System.out.println("\n🎉 Thanks for trying the Typing Speed Checker!");
     }
     public static void main(String[] args) throws InterruptedException {
         welcome();
