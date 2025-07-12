@@ -58,6 +58,10 @@ public class Main {
         System.out.println("📄 \"" + sentence + "\"");
         start_dur=System.currentTimeMillis();
         user_input = sc.nextLine();
+        if(user_input.trim().isEmpty()){
+            System.out.println("⚠️ You didn't type anything!");
+            System.exit(0);
+        }
         end_dur=System.currentTimeMillis();
         System.out.println("📝 You typed: \"" + user_input + "\"");
     }
@@ -69,6 +73,7 @@ public class Main {
         String[] typed_words = user_input.trim().split("\\s+");
         word_count = typed_words.length;
         int len = Math.min(original_words.length,typed_words.length);
+        int char_len = Math.min(user_input.length(),sentence.length());
         for (int i=0;i<len;i++){
             if(original_words[i].equals(typed_words[i])){
                 corr_count++;
@@ -82,7 +87,7 @@ public class Main {
             raw_wpm = 0;
             final_wpm = 0;
         }
-        for(int i=0;i<len;i++){
+        for(int i=0;i<char_len;i++){
             char user = user_input.charAt(i);
             char comp = sentence.charAt(i);
             if(user==comp)
