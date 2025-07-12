@@ -58,24 +58,35 @@ public class Main {
         System.out.println("You typed: \""+user_input+"\"");
     }
     public static void calculate(){
-        int accu_count=0;
+        int char_count =0;
+        int corr_count=0;
         time=time_taken(start_dur,end_dur);
-        int len = Math.min(sentence.length(),user_input.length());
-        word_count = user_input.trim().split("\\s+").length;
-        if(time>0)
-            raw_wpm =(int)(word_count/time);
-        else
-            raw_wpm =0;
+        String[] original_words = sentence.trim().split("\\s+");
+        String[] typed_words = user_input.trim().split("\\s+");
+        word_count = typed_words.length;
+        int len = Math.min(original_words.length,typed_words.length);
+        for (int i=0;i<len;i++){
+            if(original_words[i].equals(typed_words[i])){
+                corr_count++;
+            }
+        }
+        if(time>0) {
+            raw_wpm=(int)(word_count/time);
+            final_wpm=(int)(corr_count/time);
+        }
+        else {
+            raw_wpm = 0;
+            final_wpm = 0;
+        }
         for(int i=0;i<len;i++){
             char user = user_input.charAt(i);
             char comp = sentence.charAt(i);
             if(user==comp)
-                accu_count++;
+                char_count++;
         }
-        final_wpm=(int)(accu_count/time);
-        accuracy_total=((float)accu_count/sentence.length())*100.0f;
+        accuracy_total=((float) char_count /sentence.length())*100.0f;
         accuracy_total=((int)(accuracy_total *10))/10f;
-        accuracy_input=((float)accu_count/user_input.length())*100.0f;
+        accuracy_input=((float) char_count /user_input.length())*100.0f;
         accuracy_input=((int)(accuracy_input *10))/10f;
     }
     public static void display(){
@@ -83,6 +94,7 @@ public class Main {
         System.out.println("Time Taken: "+(time*60.0f)+"s");
         System.out.println("Words Typed: "+ word_count);
         System.out.println("Raw WPM: "+ raw_wpm);
+        System.out.println("Actual WPM: "+final_wpm);
         System.out.println("Full Sentence Accuracy: "+ accuracy_total +"%");
         System.out.println("Typed Sentence Accuracy: "+ accuracy_input +"%");
     }
