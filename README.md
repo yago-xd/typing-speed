@@ -67,6 +67,8 @@ java -jar typing-speed.jar
 7. Receive a motivational message based on your final WPM.
 8. To replay, simply **re-run the program**.
 
+Try it on: [Replit](https://replit.com/@yago-xd/typing-speed)
+
 ---
 ## 🧠 Future Improvements
 ✅ Word-by-word highlighting of mistakes  
