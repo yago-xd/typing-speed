@@ -28,7 +28,8 @@ public class Main {
         long diff=end-start;
         float ts=diff/1000.0f;
         float tm=ts/60.0f;
-        return Math.round(tm*10)/10f;
+        tm=Math.round(tm*10)/10f;
+        return tm;
     }
     public static void welcome(){
         System.out.println("╔══════════════════════════════════════════════════╗");
@@ -98,9 +99,22 @@ public class Main {
         accuracy_input=((float) char_count /user_input.length())*100.0f;
         accuracy_input=((int)(accuracy_input *10))/10f;
     }
+    public static String time_convert(){
+        long ts=(end_dur-start_dur)/1000;
+        long hours=(ts/3600);
+        long minutes=(ts%3600)/60;
+        long seconds=ts%60;
+        StringBuilder time_display = new StringBuilder();
+        if(ts>=3600)
+            time_display.append(hours).append(" hours, ");
+        if(ts>=60)
+            time_display.append(minutes).append(" minutes, ");
+        time_display.append(seconds).append(" seconds");
+        return time_display.toString();
+    }
     public static void display(){
         System.out.println("\n━━━━━━━━━━━━━━━━━━━━━━ 📊 RESULTS 📊 ━━━━━━━━━━━━━━━━━━━━━━");
-        System.out.println("⏱️ Time Taken: "+time*60.0f+"s");
+        System.out.println("⏱️ Time Taken: "+time_convert());
         System.out.println("✍️ Words Typed: " + word_count);
         System.out.println("🚀 Raw Speed (WPM): " + raw_wpm);
         System.out.println("🎯 Accurate Speed (WPM): " + final_wpm);
